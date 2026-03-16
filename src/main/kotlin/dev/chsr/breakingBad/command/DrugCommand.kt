@@ -10,7 +10,7 @@ import org.bukkit.command.TabExecutor
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 
-class DrugCommand(private val customItems: CustomItems): TabExecutor {
+class DrugCommand(private val customItems: CustomItems) : TabExecutor {
     val drugMap = hashMapOf(
         Pair("cannabis_seed", customItems.createCannabisSeed()),
         Pair("cannabis", customItems.createCannabis()),
@@ -25,10 +25,11 @@ class DrugCommand(private val customItems: CustomItems): TabExecutor {
         args: Array<out String>
     ): Boolean {
         val player = sender as? Player ?: return false
-        val item = drugMap.getOrElse(args[0]) { null } ?: return false
+        val item = drugMap.getOrElse(args.getOrElse(0) { "" }) { null } ?: return false
         player.inventory.addItem(item)
 
         player.sendMessage(Component.text("Вы получили ", NamedTextColor.GRAY).append(item.displayName()))
+        customItems.debugItem(item, player)
         return true
     }
 
