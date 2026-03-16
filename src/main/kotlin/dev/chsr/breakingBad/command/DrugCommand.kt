@@ -29,7 +29,6 @@ class DrugCommand(private val customItems: CustomItems) : TabExecutor {
         player.inventory.addItem(item)
 
         player.sendMessage(Component.text("Вы получили ", NamedTextColor.GRAY).append(item.displayName()))
-        customItems.debugItem(item, player)
         return true
     }
 

@@ -45,34 +45,6 @@ class CustomItems(plugin: JavaPlugin) {
         return item
     }
 
-    fun debugItem(item: ItemStack?, player: Player) {
-        if (item == null) {
-            player.sendMessage(Component.text("item = null"))
-            return
-        }
-
-        val meta = item.itemMeta
-        player.sendMessage(Component.text("type = ${item.type}"))
-        player.sendMessage(Component.text("hasMeta = ${meta != null}"))
-
-        if (meta == null) return
-
-        player.sendMessage(Component.text("hasCMD(old) = ${meta.hasCustomModelData()}"))
-        if (meta.hasCustomModelData()) {
-            player.sendMessage(Component.text("cmd(old) = ${meta.customModelData}"))
-        } else {
-            player.sendMessage(Component.text("cmd(old) = <none>"))
-        }
-
-        player.sendMessage(Component.text("hasCMDComponent = ${meta.hasCustomModelDataComponent()}"))
-        player.sendMessage(Component.text("cmd(component) = ${meta.customModelDataComponent.floats}"))
-        player.sendMessage(
-            Component.text(
-                "pdc = ${meta.persistentDataContainer.get(itemKey, PersistentDataType.STRING)}"
-            )
-        )
-    }
-
     fun createCannabisSeed(): ItemStack =
         buildItem(
             material = Material.BEETROOT_SEEDS,
