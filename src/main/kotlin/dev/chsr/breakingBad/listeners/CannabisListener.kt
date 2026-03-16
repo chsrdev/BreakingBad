@@ -87,6 +87,17 @@ class CannabisListener(
 
                 val newDamage = ((maxDurability - 1).toDouble() * currentStep / steps).toInt()
 
+                val smokeLoc = player.eyeLocation.clone().add(
+                    player.location.direction.normalize().multiply(0.35)
+                )
+                player.world.spawnParticle(
+                    Particle.WHITE_SMOKE,
+                    smokeLoc,
+                    50,
+                    0.03, 0.03, 0.03,
+                    0.01
+                )
+
                 if (currentStep >= steps || newDamage >= maxDurability - 1) {
                     player.inventory.setItemInMainHand(null)
 
