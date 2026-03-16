@@ -1,0 +1,9 @@
+name: BreakingBad
+version: '1.0-SNAPSHOT'
+main: dev.chsr.breakingBad.BreakingBad
+api-version: '1.21'
+commands:
+  drug:
+    usage: /drug <cannabis_seed|cannabis|dried_cannabis|joint>
+  addiction:
+    usage: /addiction <set|add|reduce> <value>
