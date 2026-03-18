@@ -138,7 +138,7 @@ class VillagerTradeListener(
     }
 
     private fun sellCannabisSeedsTrade(): MerchantRecipe {
-        val amountSeed = Random.nextInt(1, 6)
+        val amountSeed = Random.nextInt(1, 2)
         val result = customItems.createCannabisSeed().clone().apply { amount = amountSeed }
 
         return MerchantRecipe(
@@ -149,7 +149,7 @@ class VillagerTradeListener(
             0,
             0.05f
         ).apply {
-            addIngredient(ItemStack(Material.EMERALD, amountSeed * Random.nextInt(8, 17)))
+            addIngredient(ItemStack(Material.EMERALD, amountSeed * Random.nextInt(10, 25)))
         }
     }
 

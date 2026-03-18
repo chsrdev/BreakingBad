@@ -16,6 +16,11 @@ class DrugCommand(private val customItems: CustomItems) : TabExecutor {
         Pair("cannabis", customItems.createCannabis()),
         Pair("dried_cannabis", customItems.createDriedCannabis()),
         Pair("joint", customItems.createJoint()),
+        Pair("lamp", customItems.createGrowthLamp()),
+        Pair("aluminum_plate", customItems.createAluminumPlate()),
+        Pair("electronic_board", customItems.createElectronicBoard()),
+        Pair("led_matrix", customItems.createLedMatrix()),
+        Pair("reflector", customItems.createReflector())
     )
 
     override fun onCommand(
@@ -38,6 +43,6 @@ class DrugCommand(private val customItems: CustomItems) : TabExecutor {
         label: String,
         args: Array<out String>
     ): List<String?> {
-        return mutableListOf("cannabis_seed", "cannabis", "dried_cannabis", "joint")
+        return drugMap.keys.toList()
     }
 }

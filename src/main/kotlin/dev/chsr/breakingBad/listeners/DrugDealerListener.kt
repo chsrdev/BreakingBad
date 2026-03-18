@@ -47,7 +47,7 @@ class DrugDealerListener(
             0,
             0.05f
         ).apply {
-            addIngredient(ItemStack(Material.EMERALD, cannabisAmount*Random.nextInt(8, 25)))
+            addIngredient(ItemStack(Material.EMERALD, cannabisAmount*Random.nextInt(8, 15)))
         }
     }
 

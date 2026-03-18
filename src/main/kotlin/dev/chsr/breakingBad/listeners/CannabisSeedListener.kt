@@ -90,7 +90,7 @@ class CannabisSeedListener(
         val seed = customItems.createCannabisSeed()
         if (mature) {
             val cannabis = customItems.createCannabis()
-            cannabis.amount = Random.nextInt(0, 9)
+            cannabis.amount = Random.nextInt(4, 9)
             seed.amount = Random.nextInt(0, 2)
             block.world.dropItemNaturally(block.location, cannabis)
             block.world.dropItemNaturally(block.location, seed)
