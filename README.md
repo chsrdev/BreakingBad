@@ -1,5 +1,5 @@
 server.properties
 ```
-resource-pack=https\://github.com/chsrdev/BreakingBad/releases/download/0.0.1/resourcepack.zip
-resource-pack-sha1=10D34F626DB45A18E4571F9123BBE3BD12A953FB
+resource-pack=https\://github.com/chsrdev/BreakingBad/releases/download/0.1.0/resourcepack.zip
+resource-pack-sha1=82500B53FF00F61E97D00102065BD24CEE7493B2
 ```
