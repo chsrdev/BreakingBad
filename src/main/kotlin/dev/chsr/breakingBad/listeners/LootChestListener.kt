@@ -18,8 +18,10 @@ class LootChestListener(
 
         val drugDealerBook = customItemsManager.drugDealerBook.createBook()
         val farmerRecipeBook = customItemsManager.farmerRecipeBook.createBook()
+        val cannabisSeed = customItemsManager.farmerRecipeBook.createBook()
 
         tryAddLoot(event, drugDealerBook, chanceForDrugDealerBook(key))
+        tryAddLoot(event, cannabisSeed, chanceForDrugDealerBook(key))
         tryAddLoot(event, farmerRecipeBook, chanceForFarmerRecipeBook(key))
     }
 
