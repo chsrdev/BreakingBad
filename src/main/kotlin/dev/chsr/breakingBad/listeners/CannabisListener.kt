@@ -2,7 +2,7 @@ package dev.chsr.breakingBad.listeners
 
 import dev.chsr.breakingBad.BreakingBad
 import dev.chsr.breakingBad.addiction.AddictionManager
-import dev.chsr.breakingBad.helper.CustomItems
+import dev.chsr.breakingBad.items.manager.CustomItemsManager
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.Particle
@@ -14,14 +14,12 @@ import org.bukkit.event.block.Action
 import org.bukkit.event.player.PlayerInteractEvent
 import org.bukkit.inventory.EquipmentSlot
 import org.bukkit.inventory.meta.Damageable
-import org.bukkit.potion.PotionEffect
-import org.bukkit.potion.PotionEffectType
 import org.bukkit.scheduler.BukkitRunnable
 import java.util.UUID
 
 class CannabisListener(
     private val plugin: BreakingBad,
-    private val customItems: CustomItems,
+    private val customItemsManager: CustomItemsManager,
     private val addictionManager: AddictionManager
 ) : Listener {
 
@@ -37,7 +35,7 @@ class CannabisListener(
         val player = event.player
         val item = event.item ?: return
 
-        if (!customItems.isJoint(item)) return
+        if (!customItemsManager.joint.equals(item)) return
         if (burningPlayers.contains(player.uniqueId)) return
 
         event.isCancelled = true
@@ -68,7 +66,7 @@ class CannabisListener(
 
                 val item = player.inventory.itemInMainHand
 
-                if (!customItems.isJoint(item)) {
+                if (!customItemsManager.joint.equals(item)) {
                     burningPlayers.remove(player.uniqueId)
                     cancel()
                     return

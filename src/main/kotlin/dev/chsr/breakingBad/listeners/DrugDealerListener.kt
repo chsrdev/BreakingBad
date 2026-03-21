@@ -1,8 +1,8 @@
 package dev.chsr.breakingBad.listeners
 
+import dev.chsr.breakingBad.items.manager.CustomItemsManager
 import kotlin.random.Random
 
-import dev.chsr.breakingBad.helper.CustomItems
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.entity.EntityType
@@ -16,7 +16,7 @@ import org.bukkit.plugin.java.JavaPlugin
 
 class DrugDealerListener(
     private val plugin: JavaPlugin,
-    private val customItems: CustomItems
+    private val customItemsManager: CustomItemsManager
 ) : Listener {
     @EventHandler
     fun onTraderSpawn(event: EntitySpawnEvent) {
@@ -37,7 +37,7 @@ class DrugDealerListener(
 
     private fun sellCannabisSeeds(): MerchantRecipe {
         val cannabisAmount = Random.nextInt(1, 4)
-        val result = customItems.createCannabisSeed().clone().apply { amount = cannabisAmount }
+        val result = customItemsManager.cannabisSeed.create().apply { amount = cannabisAmount }
 
         return MerchantRecipe(
             result,
@@ -52,7 +52,7 @@ class DrugDealerListener(
     }
 
     private fun sellJoint(): MerchantRecipe {
-        val result = customItems.createJoint().clone()
+        val result = customItemsManager.joint.create()
 
         return MerchantRecipe(
             result,
@@ -77,7 +77,7 @@ class DrugDealerListener(
             0,
             0.05f
         ).apply {
-            addIngredient(customItems.createCannabisSeed().clone().apply { amount = 1 })
+            addIngredient(customItemsManager.cannabisSeed.create().apply { amount = 1 })
         }
     }
 
@@ -92,7 +92,7 @@ class DrugDealerListener(
             0,
             0.05f
         ).apply {
-            addIngredient(customItems.createJoint().clone())
+            addIngredient(customItemsManager.joint.create())
         }
     }
 

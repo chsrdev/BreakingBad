@@ -1,6 +1,6 @@
 package dev.chsr.breakingBad.listeners
 
-import dev.chsr.breakingBad.helper.CustomItems
+import dev.chsr.breakingBad.items.manager.CustomItemsManager
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
@@ -18,7 +18,7 @@ import kotlin.random.Random
 
 class VillagerTradeListener(
     private val plugin: JavaPlugin,
-    private val customItems: CustomItems
+    private val customItemsManager: CustomItemsManager
 ) : Listener {
 
     private val jointRollKey = NamespacedKey(plugin, "joint_trade_roll_done")
@@ -61,8 +61,6 @@ class VillagerTradeListener(
 
     private fun setupJointBuyer(villager: Villager) {
         val pdc = villager.persistentDataContainer
-        Bukkit.broadcastMessage("carrer change")
-
         if (!pdc.has(jointRollKey, PersistentDataType.BYTE)) {
             pdc.set(jointRollKey, PersistentDataType.BYTE, 1)
             val allowed = if (Random.nextDouble() < 0.2) 1.toByte() else 0.toByte()
@@ -133,13 +131,13 @@ class VillagerTradeListener(
             0,
             0.05f
         ).apply {
-            addIngredient(customItems.createJoint().clone().apply { amount = 1 })
+            addIngredient(customItemsManager.joint.create().apply { amount = 1 })
         }
     }
 
     private fun sellCannabisSeedsTrade(): MerchantRecipe {
         val amountSeed = Random.nextInt(1, 2)
-        val result = customItems.createCannabisSeed().clone().apply { amount = amountSeed }
+        val result = customItemsManager.cannabisSeed.create().apply { amount = amountSeed }
 
         return MerchantRecipe(
             result,

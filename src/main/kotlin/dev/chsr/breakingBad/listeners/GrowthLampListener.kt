@@ -1,7 +1,7 @@
 package dev.chsr.breakingBad.listeners
 
 import dev.chsr.breakingBad.helper.CropStorage
-import dev.chsr.breakingBad.helper.CustomItems
+import dev.chsr.breakingBad.items.manager.CustomItemsManager
 import dev.chsr.breakingBad.helper.GrowthLampManager
 import org.bukkit.Material
 import org.bukkit.event.EventHandler
@@ -13,14 +13,14 @@ import org.bukkit.inventory.ItemStack
 import kotlin.random.Random
 
 class GrowthLampListener(
-    private val customItems: CustomItems,
+    private val customItemsManager: CustomItemsManager,
     private val lampManager: GrowthLampManager,
     private val cropStorage: CropStorage
 ) : Listener {
 
     @EventHandler
     fun onPlace(event: BlockPlaceEvent) {
-        if (!customItems.isGrowthLamp(event.itemInHand)) return
+        if (!customItemsManager.growthLamp.equals(event.itemInHand)) return
 
         lampManager.add(event.block.location)
     }
@@ -32,7 +32,7 @@ class GrowthLampListener(
 
         lampManager.remove(block.location)
         event.isDropItems = false
-        block.world.dropItemNaturally(block.location, customItems.createGrowthLamp())
+        block.world.dropItemNaturally(block.location, customItemsManager.growthLamp.create())
     }
 
     @EventHandler

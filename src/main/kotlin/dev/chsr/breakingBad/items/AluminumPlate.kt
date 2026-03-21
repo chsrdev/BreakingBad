@@ -1,0 +1,24 @@
+package dev.chsr.breakingBad.items
+
+import dev.chsr.breakingBad.items.manager.CustomItem
+import net.kyori.adventure.text.format.NamedTextColor
+import org.bukkit.Material
+import org.bukkit.NamespacedKey
+import org.bukkit.inventory.ShapedRecipe
+import org.bukkit.plugin.java.JavaPlugin
+
+class AluminumPlate(plugin: JavaPlugin) : CustomItem(
+    plugin = plugin,
+    id = "aluminum_plate",
+    material = Material.IRON_NUGGET,
+    name = "Алюминиевая пластина",
+    color = NamedTextColor.WHITE,
+    customModelData = 2301
+) {
+    private val recipeKey = NamespacedKey(plugin, "aluminum_plate_recipe")
+
+    fun getRecipe(): ShapedRecipe = ShapedRecipe(recipeKey, create()).apply {
+        shape("III", "I I", "III")
+        setIngredient('I', Material.IRON_INGOT)
+    }
+}

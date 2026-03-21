@@ -1,8 +1,7 @@
 package me.example.myplugin
 
 import dev.chsr.breakingBad.helper.CropStorage
-import dev.chsr.breakingBad.helper.CustomItems
-import org.bukkit.Bukkit
+import dev.chsr.breakingBad.items.manager.CustomItemsManager
 import org.bukkit.Material
 import org.bukkit.block.data.Ageable
 import org.bukkit.event.EventHandler
@@ -15,7 +14,7 @@ import org.bukkit.inventory.EquipmentSlot
 import kotlin.random.Random
 
 class CannabisSeedListener(
-    private val customItems: CustomItems,
+    private val customItemsManager: CustomItemsManager,
     private val cropStorage: CropStorage
 ) : Listener {
     @EventHandler
@@ -28,7 +27,7 @@ class CannabisSeedListener(
         val item = event.item
 
         if (clicked!!.type != Material.FARMLAND) return
-        if (!customItems.isCannabisSeed(item)) return
+        if (!customItemsManager.cannabisSeed.equals(item)) return
 
         val plantBlock = clicked.getRelative(0, 1, 0)
         if (!plantBlock.type.isAir()) return
@@ -87,9 +86,9 @@ class CannabisSeedListener(
         block.type = Material.AIR;
         cropStorage.unmarkCannabisCrop(block.location)
 
-        val seed = customItems.createCannabisSeed()
+        val seed = customItemsManager.cannabisSeed.create()
         if (mature) {
-            val cannabis = customItems.createCannabis()
+            val cannabis = customItemsManager.cannabis.create()
             cannabis.amount = Random.nextInt(4, 9)
             seed.amount = Random.nextInt(0, 2)
             block.world.dropItemNaturally(block.location, cannabis)
