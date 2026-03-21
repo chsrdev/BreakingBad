@@ -30,6 +30,7 @@ class DrugDealerListener(
             addIfMissing(recipes, sellJoint())
             addIfMissing(recipes, buyCannabisSeeds())
             addIfMissing(recipes, buyJoint())
+            addIfMissing(recipes, sellBook())
 
             trader.recipes = recipes
         })
@@ -48,6 +49,21 @@ class DrugDealerListener(
             0.05f
         ).apply {
             addIngredient(ItemStack(Material.EMERALD, cannabisAmount*Random.nextInt(8, 15)))
+        }
+    }
+
+    private fun sellBook(): MerchantRecipe {
+        val result = customItemsManager.drugDealerBook.createBook()
+
+        return MerchantRecipe(
+            result,
+            0,
+            1,
+            true,
+            0,
+            0.05f
+        ).apply {
+            addIngredient(ItemStack(Material.EMERALD, Random.nextInt(16, 24)))
         }
     }
 

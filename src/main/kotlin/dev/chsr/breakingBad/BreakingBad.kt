@@ -9,7 +9,10 @@ import dev.chsr.breakingBad.items.manager.CustomItemsManager
 import dev.chsr.breakingBad.listeners.CannabisListener
 import dev.chsr.breakingBad.listeners.ChocolateBarListener
 import dev.chsr.breakingBad.listeners.DrugDealerListener
+import dev.chsr.breakingBad.listeners.EnergyDrinkListener
 import dev.chsr.breakingBad.listeners.GrowthLampListener
+import dev.chsr.breakingBad.listeners.LootChestListener
+import dev.chsr.breakingBad.listeners.MedicalCapsuleListener
 import dev.chsr.breakingBad.listeners.VillagerTradeListener
 import me.example.myplugin.CannabisSeedListener
 import org.bukkit.plugin.java.JavaPlugin
@@ -71,6 +74,18 @@ class BreakingBad : JavaPlugin() {
         )
         server.pluginManager.registerEvents(
             ChocolateBarListener(this, customItemsManager),
+            this
+        )
+        server.pluginManager.registerEvents(
+            LootChestListener(customItemsManager),
+            this
+        )
+        server.pluginManager.registerEvents(
+            EnergyDrinkListener(customItemsManager),
+            this
+        )
+        server.pluginManager.registerEvents(
+            MedicalCapsuleListener(customItemsManager),
             this
         )
     }

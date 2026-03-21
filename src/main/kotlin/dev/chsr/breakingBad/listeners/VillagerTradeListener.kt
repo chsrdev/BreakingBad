@@ -38,9 +38,8 @@ class VillagerTradeListener(
         Bukkit.getScheduler().runTask(plugin, Runnable {
             setupJointBuyer(villager)
 
-            if (villager.profession == Villager.Profession.FARMER) {
+            if (villager.profession == Villager.Profession.FARMER)
                 setupFarmerSeedSeller(villager)
-            }
         })
     }
 
@@ -58,7 +57,6 @@ class VillagerTradeListener(
             setupFarmerSeedSeller(villager)
         })
     }
-
     private fun setupJointBuyer(villager: Villager) {
         val pdc = villager.persistentDataContainer
         if (!pdc.has(jointRollKey, PersistentDataType.BYTE)) {
